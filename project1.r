@@ -51,8 +51,7 @@ autoplot(chocolate_prodSTL, main="STL chocolate_prod")
 training_chocolate_prod <- window(chocolate_prod, end=c(1994,8))
 testset_94_95 <- window(chocolate_prod, start=c(1994, 9))
 
-
-#========STL==========
+#=======STL=========
 
 #12 month naive forecast with STL
 fc_STL_naive <- stlf(training_chocolate_prod, method="naive", h=12)
@@ -83,7 +82,8 @@ autoplot(fc_STL_ets, xlim=c(1993,1996), xlab = "Time", ylab = "Metric tons" ) +
 accuracy(fc_STL_ets, chocolate_prod)
 
 
-#========ETS========
+
+#=======ETS========
 
 #Setting up the ETS model & checking parameters
 ets_chco <- ets(training_chocolate_prod)
@@ -101,7 +101,7 @@ autoplot(ets_fc, xlim=c(1993,1996), xlab = "Time", ylab = "Metric tons" ) +
 
 
 
-#==========TSCV=========
+#========TSCV========
 tsCV_2step <- function(){
   #csv to df object
   df <- read.csv(file="month_aus_prod_chocolate.csv", header=TRUE, sep=",")
